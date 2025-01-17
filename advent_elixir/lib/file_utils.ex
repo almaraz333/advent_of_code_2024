@@ -1,8 +1,12 @@
 defmodule FileUtils do
   def readFile(path) do
     # The path INSIDE the lib directory
-    File.stream!("./lib/#{path}")
-    |> Enum.to_list()
-    |> Enum.map(&String.trim/1)
+    case File.read("./lib/#{path}") do
+      {:ok, text} ->
+        String.trim(text)
+
+      {:error, reason} ->
+        IO.inspect(reason, label: "Error reading file")
+    end
   end
 end
