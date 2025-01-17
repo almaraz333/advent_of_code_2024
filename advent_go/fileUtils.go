@@ -11,7 +11,7 @@ func ReadFileToLines(path string) ([]string, error) {
   
 	
     if err != nil { 
-		log.Fatalf("failed to open") 
+		log.Fatalf("failed to open %+v", err) 
 	} 
 	
 	defer file.Close() 
